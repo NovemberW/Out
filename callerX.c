@@ -1,12 +1,12 @@
 #include <stdio.h>
 #include <string.h>
-#include "depender/frame.c"
+#include "cubTestFramework/framework/cubtest.h"
 
 int main(void) {
 
 //handle für das sammeln der Testergebnisse
 
-	struct handle* handle_ = getEmptyHandle();
+	handle* handle_ = getEmptyHandle();
 
 //die tests durchführen
 

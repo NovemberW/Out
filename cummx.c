@@ -1,12 +1,18 @@
 #include <stdio.h>
 #include <string.h>
-#include "depender/frame.c"
+#include "cubTestFramework/framework/cubtest.h"
+
+void f(char* string){
+	printf("%s", string);
+}
 
 int main(void) {
 
 //handle für das sammeln der Testergebnisse
 
-	struct handle* handle_ = getEmptyHandle();
+	handle* handle_ = getEmptyHandle(&f);
+
+	generateHeader(handle_);
 
 //die tests durchführen
 
@@ -25,12 +31,11 @@ int main(void) {
 	int a[] = { 1, 2, 3 };
 	int b[] = { 2, 3, 4 };
 
-	int f = assert_IntArrayEqual(a, b, 3, "F7: Arrays auf dem bereich [0..3] nicht gleich!", handle_);//1
+	//int f = assert_IntArrayEqual(a, b, 3, "F7: Arrays auf dem Bereich [0..3] nicht gleich!", handle_);//1
 
-	assert_IntInRange(2,1,5,"Nicht im Bereich.",handle_);
-	assert_IntInRange(2,5,6,"Nicht im Bereich.",handle_);
+	assert_IntInRange(2,1,5,"Nicht im Bereich1.",handle_);
+	assert_IntInRange(2,5,6,"Nicht im Bereich2.",handle_);
 
-	printf("%d\n",f);
 //Siehe Abschnitt über Weitere Features.
 
 	appendNote("Einfache Meldung anzeigen.", handle_);
@@ -39,26 +44,8 @@ int main(void) {
 	appendNoteAndInt("Ausgabe eines Ints",42, handle_);
 //Ausgabe erzeugen
 
-	generateHeader(handle_);
+
 	generateReport(handle_);
-	char** noteList = getMessages(handle_);
-
-//Ausgabe
-
-	printf("%s\n", handle_->header);
-
-	int i = 0;
-	while (i < handle_->messages) {
-		printf("%s\n", noteList[i]);
-		i++;
-	}
-
-	printf("%s\n", handle_->report);
-
-//Speicherplatz freigeben
-
-	deleteHandle(handle_);
-
 
 	return 0;
 
