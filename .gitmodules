@@ -1,3 +1,6 @@
 [submodule "depender"]
 	path = depender
 	url = https://github.com/NovemberW/depender
+[submodule "cubTestFramework"]
+	path = cubTestFramework
+	url = https://github.com/NovemberW/cubtest
